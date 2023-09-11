@@ -1,0 +1,52 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: asset-auth-ingress
+  namespace: asset
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    # acme.cert-manager.io/http01-edit-in-place: "true"
+
+spec:
+  ingressClassName: nginx
+  rules:
+   -  host: asset-auth.az1-ahi-int.com
+      http:
+       paths:
+         - path: /
+           pathType: Prefix
+           backend:
+             service:
+               name: api-security
+               port:
+                 number: 8000
+  tls:
+  - hosts:
+    - asset-auth.az1-ahi-int.com
+    secretName: asset-auth-ingress-cert-tsl
+
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: nginxapp1-ingress-service
+#   annotations:    
+#     kubernetes.io/ingress.class: "nginx"
+#     cert-manager.io/cluster-issuer: letsencrypt
+#     acme.cert-manager.io/http01-edit-in-place: "true"
+# spec:
+#   rules:
+#     - host: testapp.kubedev.link
+#       http:
+#         paths:
+#           - path: /app1
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: app1-nginx-clusterip-service
+#                 port: 
+#                   number: 80
+#   tls:
+#   - hosts:
+#     - testapp.kubedev.link
+#     secretName: sapp1-kubedev-link-secret

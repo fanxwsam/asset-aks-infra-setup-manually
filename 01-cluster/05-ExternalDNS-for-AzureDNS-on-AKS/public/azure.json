@@ -1,0 +1,7 @@
+{
+  "tenantId": "0a0ba87d-f284-4664-b53e-a0a236095ad4",
+  "subscriptionId": "e914d343-0ff7-4739-88f2-0c7a2cbdf765",
+  "resourceGroup": "dns-zone",                    
+  "useManagedIdentityExtension": true,  
+  "userAssignedIdentityID": "721dfea5-1918-483a-8c6a-f42043ade7c0"
+}

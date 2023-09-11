@@ -1,0 +1,69 @@
+apiVersion: stackgres.io/v1
+kind: SGScript
+metadata:
+  name: sg-user-script
+  namespace: asset-postgres-devuat
+spec:
+  managedVersions: true
+  continueOnError: false  
+  scripts:
+  - database: postgres
+    name: create-uat-user
+    scriptFrom:
+      secretKeyRef:
+        key: create-user-uat.sql
+        name: api-users-database-user
+  - database: postgres
+    name: create-uat-database
+    script: |
+      CREATE DATABASE apiusersuat WITH OWNER apiusersuseruat;
+  - database: apiusersuat
+    name: init-api-users-uat-database
+    scriptFrom:
+      configMapKeyRef:
+        key: complete-generated-database-users.sql
+        name: api-users-database-init
+  - database: postgres
+    name: grant-privs-api-users-uat
+    script: |
+      GRANT ALL PRIVILEGES ON DATABASE apiusersuat TO
+        apiusersuseruat;
+      GRANT CONNECT ON DATABASE apiusersuat TO
+        apiusersuseruat;
+  - database: apiusersuat
+    name: grant-privs-schema-uat
+    script: |
+      GRANT ALL PRIVILEGES ON SCHEMA public TO 
+          apiusersuseruat;
+      GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO 
+          apiusersuseruat;
+  - database: postgres
+    name: create-dev-user
+    scriptFrom:
+      secretKeyRef:
+        key: create-user-dev.sql
+        name: api-users-database-user
+  - database: postgres
+    name: create-dev-database
+    script: |
+      CREATE DATABASE apiusersdev WITH OWNER apiusersuserdev;
+  - database: apiusersdev
+    name: init-api-users-dev-database
+    scriptFrom:
+      configMapKeyRef:
+        key: complete-generated-database-users.sql
+        name: api-users-database-init
+  - database: postgres
+    name: grant-privs-api-users-dev
+    script: |
+      GRANT ALL PRIVILEGES ON DATABASE apiusersdev TO
+        apiusersuserdev;
+      GRANT CONNECT ON DATABASE apiusersdev TO
+        apiusersuserdev;
+  - database: apiusersdev
+    name: grant-privs-schema-dev
+    script: |
+      GRANT ALL PRIVILEGES ON SCHEMA public TO 
+          apiusersuserdev;
+      GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO 
+          apiusersuserdev;

@@ -1,0 +1,54 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginxapp1-ingress-service-with-host-private-pubdns2
+  namespace: dev-svc
+  annotations:
+    
+  labels:
+    app: app1-public-ingress
+
+spec:
+  ingressClassName: internal-nginx
+  rules:
+   -  host: dev.samsassets.com
+      http:
+       paths:
+         - path: /
+           pathType: Prefix
+           backend:
+             service:
+               name: app1-clusterip-service                     
+               port:                 
+                 number: 80
+  tls:
+  - hosts:
+    - dev.samsassets.com
+    secretName: ingress-same-app1-public-dev-secret
+
+
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: nginxapp1-ingress-service
+#   annotations:    
+#     kubernetes.io/ingress.class: "nginx"
+#     cert-manager.io/cluster-issuer: letsencrypt
+#     acme.cert-manager.io/http01-edit-in-place: "true"
+# spec:
+#   rules:
+#     - host: testapp.samsasset.com
+#       http:
+#         paths:
+#           - path: /app1
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: app1-nginx-clusterip-service
+#                 port: 
+#                   number: 80
+#   tls:
+#   - hosts:
+#     - testapp.samsasset.com
+#     secretName: sapp1-kubedev-link-secret

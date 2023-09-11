@@ -1,0 +1,23 @@
+prometheus:
+  nodeSelector:
+    app: system-apps
+
+grafana:
+  nodeSelector:
+    app: system-apps
+  admin:
+    existingSecret: grafana-credentials-secret
+    userKey: admin-user
+    passwordKey: admin-password
+
+kube-prometheus-operator:
+  nodeSelector:
+    app: system-apps
+
+kube-state-metrics:
+  nodeSelector:
+    app: system-apps
+
+alertmanager:
+  nodeSelector:
+    app: system-apps

@@ -1,0 +1,7 @@
+{
+  "tenantId": "0a0ba87d-f284-4664-b53e-a0a236095ad4",
+  "subscriptionId": "e914d343-0ff7-4739-88f2-0c7a2cbdf765",
+  "resourceGroup": "dns-zone-devuat-private",
+  "useManagedIdentityExtension": true,  
+  "userAssignedIdentityID": "f50293c3-c783-4522-936f-54f780910443"
+}
