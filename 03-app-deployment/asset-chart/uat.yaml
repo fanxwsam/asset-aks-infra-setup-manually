@@ -18,41 +18,41 @@ asset:
     memory: 576Mi  
 
   apigw:
-    image: samuelest/apigw:2.4
+    image: samuelest/apigw:2.5
     memory: 576Mi
     ingress:
       host: asset-api-uat.az1-ahi-int.com
 
   eureka:
-    image: samuelest/eureka-server:2.4
+    image: samuelest/eureka-server:2.5
     memory: 576Mi
 
   security:
-    image: samuelest/api-security:2.4
+    image: samuelest/api-security:2.5
     memory: 576Mi
     ingress:
       host: asset-api-auth-uat.az1-ahi-int.com
       
   customers:
-    image: samuelest/api-customers:2.4
+    image: samuelest/api-customers:2.5
     memory: 576Mi
   
   fraud:
-    image: samuelest/api-fraud:2.4
+    image: samuelest/api-fraud:2.5
     memory: 576Mi
 
   messages:
-    image: samuelest/api-messages:2.4
+    image: samuelest/api-messages:2.5
     memory: 576Mi
 
   notifications:
-    image: samuelest/api-notifications:2.4
+    image: samuelest/api-notifications:2.5
     memory: 576Mi
     
   users:
-    image: samuelest/api-users:2.4
+    image: samuelest/api-users:2.5
     memory: 576Mi
     dataSource:
-      database: dGthaGlkYg==
-      key: TTRWNXJXWHpBZFl2MFQzaDA2Y0JNSXQ0a0VmYlhNaTR2VWU0d2x4YjFUMlN0OTcybVA3YVpuOGNZcmV1ZkpWdG4wZXpCSHp4YWlsVEFDRGJJVDFQdWc9PQ==       
-      uri: aHR0cHM6Ly9haGktYmhhLWNvc21vcy1kZXYuZG9jdW1lbnRzLmF6dXJlLmNvbTo0NDMv
+      database: YXNzZXQtZGVtbw==
+      key: TUZnaXBJNnA5d2RLdExuZUxVUkpIMHV4Q1NYaExKMHV2ZjZNMzdFaUlXRjRTclI1RU1lWUVuQklZUXlpUlVTc21FNFJCTkJqWTl4ZUFDRGJ4WWtteHc9PQ==
+      uri: aHR0cHM6Ly9hc3NldC5kb2N1bWVudHMuYXp1cmUuY29tOjQ0My8=
